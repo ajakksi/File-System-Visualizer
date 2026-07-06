@@ -5,7 +5,9 @@ function App() {
  
   const [data,setData] = useState(null);
 
-  async function getData() {
+  useEffect(()=>{
+    
+    const  getData = async() =>  {
     try{
         const response =  await fetch('/data.json');
         if(!response.ok) throw new Error(response.status);
@@ -16,12 +18,8 @@ function App() {
     }
           
   }
-
-
-  useEffect(()=>{
-    
-    getData(); //eslint подчеркивает (Error: Calling setState synchronously within an effect can trigger cascading renders).Довольно часто с этим встречаюсь и много времени уходит на фикс, насколько это серьезно и стоит ли вообще обращать внимание
-    
+  
+  getData();
   },[])
 
   return (
