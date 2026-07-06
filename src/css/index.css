@@ -1,0 +1,22 @@
+.tree {
+  text-align: left;
+  padding: 24px;
+}
+
+.tree-node {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  font-size: 18px;
+}
+
+
+.tree-node img {
+  width: 16px;
+  height: 16px;
+}
+
+.tree-node.folder {
+  font-weight: bold;
+}
