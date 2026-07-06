@@ -16,18 +16,14 @@ function App() {
     }catch(e){
       console.error('Error: ', e);
     }
-          
   }
-  
   getData();
   },[])
 
   return (
    <div className="tree">
     {data ? (
-      Object.entries(data.root).map(([name, node]) => (
-        <TreeNode name={name} node={node} key={name} depth={0} />
-      ))
+        <TreeNode entries={data.root} depth={0} />
     ) : (
       <div>Loading...</div>
     )}
