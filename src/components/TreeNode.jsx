@@ -2,10 +2,12 @@ import folderIcon from '../icons/folder.png'
 import fileIcon from '../icons/file.png'
 
 const TreeNode = ({ entries, depth = 0 }) => {
+   const safeEntries = entries ?? {};
   return (
     <>
-      {Object.entries(entries).map(([name, node]) => {
+      {Object.entries(safeEntries).map(([name, node]) => {
         const isFolder = node.type === 'folder';
+        const isEmpty = isFolder && (!node.children || Object.keys(node.children).length === 0);
 
         return (
           <div key={name}>
@@ -18,9 +20,10 @@ const TreeNode = ({ entries, depth = 0 }) => {
                 alt={isFolder ? 'Folder' : 'File'}
               />
               {name}
+              {isFolder && isEmpty && (<span className="empty-folder-hint"> (empty)</span>)}
             </div>
 
-            {isFolder && (
+            {isFolder && node.children &&(
               <TreeNode entries={node.children} depth={depth + 1} />
             )}
           </div>
